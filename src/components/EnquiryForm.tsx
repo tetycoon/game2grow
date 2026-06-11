@@ -159,6 +159,7 @@ export function EnquiryForm({ title }: Props) {
 
       <input
         required
+        minLength={2}
         placeholder="Full Name"
         className="field-base"
         value={form.name}
@@ -166,6 +167,7 @@ export function EnquiryForm({ title }: Props) {
       />
       <input
         required
+        minLength={2}
         placeholder="Organisation / Institution"
         className="field-base"
         value={form.organisation}
@@ -174,6 +176,9 @@ export function EnquiryForm({ title }: Props) {
       <div className="grid gap-4 md:grid-cols-2">
         <input
           required
+          minLength={8}
+          pattern="[0-9+\s\-()]{8,}"
+          title="Please enter a valid phone number (at least 8 digits)"
           placeholder="Mobile"
           className="field-base"
           value={form.mobile}
@@ -190,6 +195,7 @@ export function EnquiryForm({ title }: Props) {
       </div>
       <input
         required
+        minLength={2}
         placeholder="Program Interested In"
         className="field-base"
         value={form.programInterest}
@@ -197,6 +203,7 @@ export function EnquiryForm({ title }: Props) {
       />
       <textarea
         required
+        minLength={5}
         placeholder="Message"
         className="field-base min-h-28 resize-y"
         rows={4}
@@ -207,7 +214,7 @@ export function EnquiryForm({ title }: Props) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded-md bg-brandGold px-4 py-2.5 text-sm font-semibold tracking-[0.14em] text-black transition hover:-translate-y-0.5 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
+        className="w-full rounded-md bg-brandGold px-4 py-2.5 text-sm font-semibold tracking-[0.14em] text-black transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.01] hover:brightness-110 hover:shadow-[0_4px_20px_rgba(201,168,76,0.35)] active:translate-y-0 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
       >
         {isSubmitting ? "PROCESSING..." : "BOOK FREE DEMO"}
       </button>

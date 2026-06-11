@@ -65,17 +65,24 @@ export function PrestigeTestimonialPage() {
           <h2 className="mt-2 text-xl sm:text-2xl md:text-3xl">Moments from Our Sessions</h2>
         </header>
 
-        <div className="relative overflow-hidden rounded-xl border border-brandGold/20 bg-black/60">
+        <div className="relative overflow-hidden rounded-xl border border-brandGold/20 bg-[#141414] shadow-2xl">
           <div
             className="flex transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${current * 100}%)` }}
           >
             {sessionImages.map((img, i) => (
-              <div key={i} className="w-full shrink-0">
+              <div key={i} className="relative w-full shrink-0 h-[300px] sm:h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden">
+                {/* Cinematic Blurred Background */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center filter blur-2xl opacity-15 scale-110 pointer-events-none"
+                  style={{ backgroundImage: `url(${img})` }}
+                />
+                
+                {/* Foreground Image */}
                 <img
                   src={img}
                   alt={`Session ${i + 1}`}
-                  className="mx-auto h-[300px] w-full object-contain sm:h-[400px] md:h-[500px]"
+                  className="relative z-10 max-h-full max-w-full object-contain p-2 transition-transform duration-700 hover:scale-[1.015]"
                 />
               </div>
             ))}
@@ -83,26 +90,26 @@ export function PrestigeTestimonialPage() {
 
           <button
             onClick={prev}
-            className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 p-2 text-white transition hover:bg-brandGold hover:text-black"
+            className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-10 grid h-10 w-10 place-items-center rounded-full bg-black/60 text-white backdrop-blur border border-white/10 transition-all duration-300 hover:bg-brandGold hover:text-black hover:border-brandGold hover:scale-110 active:scale-95 shadow-lg"
             aria-label="Previous"
           >
-            <span className="material-symbols-outlined text-2xl">chevron_left</span>
+            <span className="material-symbols-outlined text-2xl font-bold">chevron_left</span>
           </button>
           <button
             onClick={next}
-            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 p-2 text-white transition hover:bg-brandGold hover:text-black"
+            className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-10 grid h-10 w-10 place-items-center rounded-full bg-black/60 text-white backdrop-blur border border-white/10 transition-all duration-300 hover:bg-brandGold hover:text-black hover:border-brandGold hover:scale-110 active:scale-95 shadow-lg"
             aria-label="Next"
           >
-            <span className="material-symbols-outlined text-2xl">chevron_right</span>
+            <span className="material-symbols-outlined text-2xl font-bold">chevron_right</span>
           </button>
 
-          <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-2">
+          <div className="absolute bottom-4 left-1/2 flex z-10 -translate-x-1/2 gap-2">
             {sessionImages.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setCurrent(i)}
-                className={`h-2.5 w-2.5 rounded-full transition ${
-                  i === current ? "bg-brandGold" : "bg-white/40 hover:bg-white/70"
+                className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
+                  i === current ? "bg-brandGold w-6" : "bg-white/40 hover:bg-white/70"
                 }`}
                 aria-label={`Go to slide ${i + 1}`}
               />
