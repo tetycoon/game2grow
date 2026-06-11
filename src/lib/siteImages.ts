@@ -8,6 +8,7 @@ import workshopCardActivity from "../assets/game2grow/workshop-card-activity.jpg
 import workshopStringExercise from "../assets/game2grow/workshop-string-exercise.jpg";
 import workshopTeamEnergizer from "../assets/game2grow/workshop-team-energizer.jpg";
 import workshopYellowSimulation from "../assets/game2grow/workshop-yellow-simulation.jpg";
+import anjenPrideAward from "../assets/game2grow/anjen-pride-award.jpg";
 
 export const siteImages = {
   brandLogo,
@@ -19,5 +20,6 @@ export const siteImages = {
   workshopTeamEnergizer,
   workshopStringExercise,
   anjenIipeCertificate,
-  anjenAuditoriumSession
+  anjenAuditoriumSession,
+  anjenPrideAward
 } as const;
