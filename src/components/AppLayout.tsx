@@ -77,11 +77,13 @@ export function AppLayout() {
   const isProgramActive = ["/corporate-training", "/student-programs", "/faculty-development", "/career-mentoring"].includes(pathname);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileProgramsOpen, setMobileProgramsOpen] = useState(false);
+  const [programsDropdownOpen, setProgramsDropdownOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     setMobileMenuOpen(false);
     setMobileProgramsOpen(false);
+    setProgramsDropdownOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -185,23 +187,35 @@ export function AppLayout() {
             ))}
 
             {/* Programs Dropdown */}
-            <div className="group relative flex items-center h-full py-1">
+            <div 
+              className="relative flex items-center h-full py-1"
+              onMouseEnter={() => setProgramsDropdownOpen(true)}
+              onMouseLeave={() => setProgramsDropdownOpen(false)}
+            >
               <button
                 type="button"
-                className={`flex items-center gap-1 font-bold ${
-                  isProgramActive ? "text-brandGold" : "text-zinc-300 hover:text-white"
+                onClick={() => setProgramsDropdownOpen((prev) => !prev)}
+                className={`flex items-center gap-1 font-bold transition-colors duration-300 ${
+                  isProgramActive || programsDropdownOpen ? "text-brandGold" : "text-zinc-300 hover:text-white"
                 }`}
               >
                 <span>Programs</span>
-                <span className="material-symbols-outlined text-base transition-transform duration-300 group-hover:rotate-180">
+                <span className={`material-symbols-outlined text-base transition-transform duration-300 ${programsDropdownOpen ? "rotate-180" : ""}`}>
                   keyboard_arrow_down
                 </span>
               </button>
-              <div className="absolute top-[92%] left-0 z-30 mt-1 w-64 origin-top-left scale-95 rounded-lg border border-brandGold/25 bg-[#131313] p-2 opacity-0 shadow-2xl transition-all duration-200 pointer-events-none group-hover:pointer-events-auto group-hover:scale-100 group-hover:opacity-100">
+              <div 
+                className={`absolute top-[92%] left-0 z-30 mt-1 w-64 origin-top-left rounded-lg border border-brandGold/25 bg-[#131313] p-2 shadow-2xl transition-all duration-200 ${
+                  programsDropdownOpen 
+                    ? "scale-100 opacity-100 pointer-events-auto" 
+                    : "scale-95 opacity-0 pointer-events-none"
+                }`}
+              >
                 {programNavItems.map(([to, label]) => (
                   <NavLink
                     key={to}
                     to={to}
+                    onClick={() => setProgramsDropdownOpen(false)}
                     className={({ isActive }) =>
                       `block rounded px-3 py-2 text-sm font-semibold transition ${
                         isActive
