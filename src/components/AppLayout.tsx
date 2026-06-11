@@ -11,7 +11,6 @@ const navItems = [
   ["/faculty-development", "Faculty Development"],
   ["/career-mentoring", "Career Mentoring"],
   ["/testimonial", "Testimonial"],
-  ["/prestige-testimonial", "Prestige Testimonial"],
   ["/contact", "Contact"]
 ] as const;
 
