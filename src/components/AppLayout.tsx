@@ -311,11 +311,11 @@ export function AppLayout() {
                 Contact
               </p>
               <div className="mt-4 space-y-3 break-words">
-                <a href="mailto:game2grow.g2g@gmail.com" className="flex items-start gap-2 text-zinc-300 transition hover:text-white">
+                <a href="mailto:admin@game2growsolutions.com" className="flex items-start gap-2 text-zinc-300 transition hover:text-white">
                   <FooterIcon>
                     <MailIcon />
                   </FooterIcon>
-                  <span>game2grow.g2g@gmail.com</span>
+                  <span>admin@game2growsolutions.com</span>
                 </a>
                 <a href="tel:+919790555270" className="flex items-start gap-2 text-zinc-300 transition hover:text-white">
                   <FooterIcon>

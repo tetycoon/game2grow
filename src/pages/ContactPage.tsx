@@ -8,8 +8,8 @@ const contactPoints = [
   {
     icon: "mail",
     label: "Email",
-    value: "game2grow.g2g@gmail.com",
-    href: "mailto:game2grow.g2g@gmail.com"
+    value: "admin@game2growsolutions.com",
+    href: "mailto:admin@game2growsolutions.com"
   },
   {
     icon: "call",
@@ -93,7 +93,7 @@ export function ContactPage() {
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               <a
-                href="mailto:game2grow.g2g@gmail.com"
+                href="mailto:admin@game2growsolutions.com"
                 className="rounded border border-brandGold/40 bg-brandGold/10 px-4 py-3 text-center text-xs font-semibold tracking-[0.14em] text-brandGold transition hover:bg-brandGold/20"
               >
                 EMAIL NOW
