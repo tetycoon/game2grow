@@ -4,7 +4,6 @@ type Props = {
   title: string;
 };
 
-const WHATSAPP_NUMBER = "919790555270";
 const ENQUIRIES_STORAGE_KEY = "game2grow_enquiries";
 
 type EnquiryPayload = {
@@ -36,9 +35,9 @@ const getInitialForm = () => ({
   message: ""
 });
 
-const buildWhatsAppMessage = (form: ReturnType<typeof getInitialForm>) => {
+const buildEmailMessage = (form: ReturnType<typeof getInitialForm>) => {
   return [
-    "New Demo Booking Enquiry - Game2Grow Website",
+    "New Demo Booking Enquiry - Game2Grow",
     "",
     `Category: ${form.category}`,
     `Name: ${form.name}`,
@@ -82,7 +81,7 @@ export function EnquiryForm({ title }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMeta, setSuccessMeta] = useState<{
     submittedAt: string;
-    whatsappUrl: string;
+    mailtoUrl: string;
     storedInBrowser: boolean;
   } | null>(null);
 
@@ -103,8 +102,9 @@ export function EnquiryForm({ title }: Props) {
       message: form.message
     };
 
-    const whatsappText = buildWhatsAppMessage(form);
-    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappText)}`;
+    const emailText = buildEmailMessage(form);
+    const emailSubject = `New Demo Booking Enquiry - ${form.name}`;
+    const mailtoUrl = `mailto:game2grow.g2g@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailText)}`;
 
     let storedInBrowser = true;
     try {
@@ -115,15 +115,15 @@ export function EnquiryForm({ title }: Props) {
       setIsSubmitting(false);
     }
 
-    const opened = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    const opened = window.open(mailtoUrl, "_blank", "noopener,noreferrer");
     if (!opened) {
-      window.location.href = whatsappUrl;
+      window.location.href = mailtoUrl;
       return;
     }
 
     setSuccessMeta({
       submittedAt: new Date().toLocaleString("en-IN"),
-      whatsappUrl,
+      mailtoUrl,
       storedInBrowser
     });
     setForm(getInitialForm());
@@ -237,23 +237,21 @@ export function EnquiryForm({ title }: Props) {
           </div>
 
           <p className="text-xs uppercase tracking-[0.2em] text-emerald-300">Successfully Prepared</p>
-          <h4 className="mt-2 text-xl text-emerald-200 sm:text-2xl">Your WhatsApp draft is ready.</h4>
+          <h4 className="mt-2 text-xl text-emerald-200 sm:text-2xl">Your email draft is ready.</h4>
           <p className="mt-2 text-sm text-emerald-100/95">
-            We opened WhatsApp with all your enquiry details. Press send in WhatsApp to complete your booking request.
+            We opened your email application with all your enquiry details. Press send to complete your booking request.
           </p>
           <p className="mt-2 text-xs text-emerald-200/90">Submitted at: {successMeta.submittedAt}</p>
           {!successMeta.storedInBrowser && (
             <p className="mt-2 text-xs text-amber-200">
-              Note: Browser backup save is currently unavailable, but your WhatsApp message flow is working.
+              Note: Browser backup save is currently unavailable, but your email draft flow is working.
             </p>
           )}
           <a
-            href={successMeta.whatsappUrl}
-            target="_blank"
-            rel="noreferrer"
+            href={successMeta.mailtoUrl}
             className="mt-4 inline-flex rounded border border-emerald-300/60 px-4 py-2 text-xs font-semibold tracking-[0.14em] text-emerald-200 transition hover:bg-emerald-400/10"
           >
-            OPEN WHATSAPP AGAIN
+            OPEN EMAIL CLIENT AGAIN
           </a>
         </article>
       )}
