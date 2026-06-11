@@ -44,13 +44,6 @@ export function AboutPage() {
               <div className="absolute top-2 right-2 z-10 h-3 w-3 border-t-2 border-r-2 border-brandGold" />
               <div className="absolute bottom-2 left-2 z-10 h-3 w-3 border-b-2 border-l-2 border-brandGold" />
               <div className="absolute bottom-2 right-2 z-10 h-3 w-3 border-b-2 border-r-2 border-brandGold" />
-              
-              {/* Player level tag */}
-              <div className="absolute top-3 left-4 z-10 flex items-center gap-1.5 rounded-md bg-black/80 px-2.5 py-1 text-[9px] font-bold tracking-[0.15em] text-brandGold border border-brandGold/30">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span>COACH LEVEL 15</span>
-              </div>
-              
               {/* Scanlines layer for gaming screen look */}
               <div className="absolute inset-0 z-10 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(201,168,76,0.04),rgba(0,255,0,0.02),rgba(201,168,76,0.04))] bg-[size:100%_4px,6px_100%] opacity-35" />
 
