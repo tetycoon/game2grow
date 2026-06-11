@@ -76,7 +76,7 @@ export function FacultyDevelopmentPage() {
           <p className="text-[11px] tracking-[0.16em] text-brandGold sm:text-sm sm:tracking-[0.25em]">
             SESSION GALLERY
           </p>
-          <h2 className="mt-2 text-xl sm:text-2xl md:text-3xl font-serif">Moments from Our Sessions</h2>
+          <h2 className="mt-2 text-xl sm:text-2xl md:text-3xl font-serif">Faculty Member of PSG College of Arts and Science</h2>
         </div>
 
         <div className="relative overflow-hidden rounded-xl border border-brandGold/20 bg-[#141414] shadow-2xl">
