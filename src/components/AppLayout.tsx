@@ -3,19 +3,13 @@ import type { ReactNode } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { siteImages } from "../lib/siteImages";
 
-const primaryNavItems = [
+const navItems = [
   ["/", "Home"],
-  ["/about", "About"]
-] as const;
-
-const programNavItems = [
+  ["/about", "About"],
   ["/corporate-training", "Corporate Training"],
   ["/student-programs", "Student Programs"],
   ["/faculty-development", "Faculty Development"],
-  ["/career-mentoring", "Career Mentoring"]
-] as const;
-
-const otherNavItems = [
+  ["/career-mentoring", "Career Mentoring"],
   ["/testimonial", "Testimonial"],
   ["/prestige-testimonial", "Prestige Testimonial"],
   ["/contact", "Contact"]
@@ -74,16 +68,11 @@ export function AppLayout() {
   const year = new Date().getFullYear();
   const { pathname } = useLocation();
   const isHomePage = pathname === "/";
-  const isProgramActive = ["/corporate-training", "/student-programs", "/faculty-development", "/career-mentoring"].includes(pathname);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileProgramsOpen, setMobileProgramsOpen] = useState(false);
-  const [programsDropdownOpen, setProgramsDropdownOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     setMobileMenuOpen(false);
-    setMobileProgramsOpen(false);
-    setProgramsDropdownOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -175,62 +164,8 @@ export function AppLayout() {
             </div>
           </div>
 
-          <nav className="hidden gap-5 pb-3 text-base lg:flex items-center">
-            {primaryNavItems.map(([to, label]) => (
-              <NavLink
-                key={to}
-                to={to}
-                className={({ isActive }) => (isActive ? "font-bold text-brandGold" : "font-bold text-zinc-300 hover:text-white")}
-              >
-                {label}
-              </NavLink>
-            ))}
-
-            {/* Programs Dropdown */}
-            <div 
-              className="relative flex items-center h-full py-1"
-              onMouseEnter={() => setProgramsDropdownOpen(true)}
-              onMouseLeave={() => setProgramsDropdownOpen(false)}
-            >
-              <button
-                type="button"
-                onClick={() => setProgramsDropdownOpen((prev) => !prev)}
-                className={`flex items-center gap-1 font-bold transition-colors duration-300 ${
-                  isProgramActive || programsDropdownOpen ? "text-brandGold" : "text-zinc-300 hover:text-white"
-                }`}
-              >
-                <span>Programs</span>
-                <span className={`material-symbols-outlined text-base transition-transform duration-300 ${programsDropdownOpen ? "rotate-180" : ""}`}>
-                  keyboard_arrow_down
-                </span>
-              </button>
-              <div 
-                className={`absolute top-[92%] left-0 z-30 mt-1 w-64 origin-top-left rounded-lg border border-brandGold/25 bg-[#131313] p-2 shadow-2xl transition-all duration-200 ${
-                  programsDropdownOpen 
-                    ? "scale-100 opacity-100 pointer-events-auto" 
-                    : "scale-95 opacity-0 pointer-events-none"
-                }`}
-              >
-                {programNavItems.map(([to, label]) => (
-                  <NavLink
-                    key={to}
-                    to={to}
-                    onClick={() => setProgramsDropdownOpen(false)}
-                    className={({ isActive }) =>
-                      `block rounded px-3 py-2 text-sm font-semibold transition ${
-                        isActive
-                          ? "bg-brandGold/15 text-brandGold"
-                          : "text-zinc-300 hover:bg-zinc-800/60 hover:text-white"
-                      }`
-                    }
-                  >
-                    {label}
-                  </NavLink>
-                ))}
-              </div>
-            </div>
-
-            {otherNavItems.map(([to, label]) => (
+          <nav className="hidden gap-5 pb-3 text-base lg:flex">
+            {navItems.map(([to, label]) => (
               <NavLink
                 key={to}
                 to={to}
@@ -248,7 +183,7 @@ export function AppLayout() {
             }`}
             aria-hidden={!mobileMenuOpen}
           >
-            {primaryNavItems.map(([to, label], index) => (
+            {navItems.map(([to, label], index) => (
               <NavLink
                 key={to}
                 to={to}
@@ -264,67 +199,10 @@ export function AppLayout() {
                 {label}
               </NavLink>
             ))}
-
-            {/* Mobile Programs Accordion */}
-            <button
-              type="button"
-              className={`mobile-menu-item flex w-full items-center justify-between rounded border px-3 py-2 text-base font-bold ${
-                isProgramActive
-                  ? "border-brandGold/50 bg-brandGold/10 text-brandGold"
-                  : "border-brandGold/20 bg-black/35 text-zinc-200"
-              }`}
-              style={{ animationDelay: `${primaryNavItems.length * 55}ms` }}
-              onClick={() => setMobileProgramsOpen((prev) => !prev)}
-            >
-              <span>Programs</span>
-              <span className={`material-symbols-outlined transition-transform duration-300 ${mobileProgramsOpen ? "rotate-180" : ""}`}>
-                expand_more
-              </span>
-            </button>
-
-            <div
-              className={`grid gap-2 pl-4 transition-all duration-300 overflow-hidden ${
-                mobileProgramsOpen ? "max-h-[300px] opacity-100 mt-1 mb-1" : "max-h-0 opacity-0 pointer-events-none"
-              }`}
-            >
-              {programNavItems.map(([to, label]) => (
-                <NavLink
-                  key={to}
-                  to={to}
-                  className={({ isActive }) =>
-                    `rounded border px-3 py-2 text-sm font-bold block ${
-                      isActive
-                        ? "border-brandGold/45 bg-brandGold/10 text-brandGold"
-                        : "border-brandGold/10 bg-black/20 text-zinc-300"
-                    }`
-                  }
-                >
-                  {label}
-                </NavLink>
-              ))}
-            </div>
-
-            {otherNavItems.map(([to, label], index) => (
-              <NavLink
-                key={to}
-                to={to}
-                className={({ isActive }) =>
-                  `mobile-menu-item rounded border px-3 py-2 text-base font-bold ${
-                    isActive
-                      ? "border-brandGold/50 bg-brandGold/10 text-brandGold"
-                      : "border-brandGold/20 bg-black/35 text-zinc-200"
-                  }`
-                }
-                style={{ animationDelay: `${(primaryNavItems.length + 1 + index) * 55}ms` }}
-              >
-                {label}
-              </NavLink>
-            ))}
-
             <Link
               to="/contact"
               className="mobile-menu-item mt-1 rounded bg-brandGold px-3 py-2 text-center text-xs font-semibold tracking-[0.12em] text-black"
-              style={{ animationDelay: `${(primaryNavItems.length + 1 + otherNavItems.length) * 55}ms` }}
+              style={{ animationDelay: `${navItems.length * 55}ms` }}
             >
               BOOK A SESSION
             </Link>
