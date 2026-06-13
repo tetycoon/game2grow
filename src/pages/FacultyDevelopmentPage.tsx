@@ -3,11 +3,9 @@ import { brochureTestimonials, facultySummary, programTopics } from "../lib/broc
 import { siteImages } from "../lib/siteImages";
 import { TopicMarquee } from "../components/TopicMarquee";
 
-import sessionImg1 from "../assets/client-session/IMG_20260605_155731.jpg.jpeg";
-import sessionImg2 from "../assets/client-session/IMG_20260605_155725.jpg.jpeg";
 import sessionImg3 from "../assets/client-session/IMG-20260606-WA0043.jpg.jpeg";
 
-const sessionImages = [sessionImg1, sessionImg2, sessionImg3];
+const sessionImages = [sessionImg3];
 
 const facultyOutcomes = [
   "Improve mentoring quality through experiential facilitation techniques",
